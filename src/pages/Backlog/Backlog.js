@@ -1,6 +1,31 @@
+import styled from 'styled-components';
 import Task from '../../components/Task/Task';
 import useDataFetching from '../../hooks/useDataFetching';
-import './Backlog.css';
+
+const BacklogWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 5%;
+
+  h2 {
+    width: 100%;
+    padding-bottom: 10px;
+    text-align: center;
+    border-bottom: 1px solid darkGray;
+  }
+
+  .Backlog-task {
+    width: 100%;
+  }
+`;
+
+const TaskWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 5%;
+`;
 
 const dataSourceURL =
   'https://my-json-server.typicode.com/PacktPublishing/React-Projects-Second-Edition/tasks';
@@ -8,9 +33,9 @@ const dataSourceURL =
 function Backlog() {
   const [loading, error, tasks] = useDataFetching(dataSourceURL);
   return (
-    <div className="Backlog-wrapper">
+    <BacklogWrapper>
       <h2>Backlog</h2>
-      <div className="Tasks-wrapper">
+      <TaskWrapper>
         {loading || error ? (
           <span>{error || 'Loading...'}</span>
         ) : (
@@ -25,8 +50,8 @@ function Backlog() {
             </div>
           ))
         )}
-      </div>
-    </div>
+      </TaskWrapper>
+    </BacklogWrapper>
   );
 }
 
