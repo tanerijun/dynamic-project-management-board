@@ -1,3 +1,4 @@
+import useDataFetching from '../../hooks/useDataFetching';
 import Lane from '../../components/Lane/Lane';
 import './Board.css';
 
@@ -8,11 +9,22 @@ const lanes = [
   { id: 4, title: 'Done' },
 ];
 
+const dataSourceURL =
+  'https://my-json-server.typicode.com/PacktPublishing/React-Projects-Second-Edition/tasks';
+
 function Board() {
+  const [loading, error, tasks] = useDataFetching(dataSourceURL);
+
   return (
-    <div className='Board-wrapper'>
+    <div className="Board-wrapper">
       {lanes.map((lane) => (
-        <Lane key={lane.id} title={lane.title} />
+        <Lane
+          key={lane.id}
+          title={lane.title}
+          loading={loading}
+          error={error}
+          tasks={tasks.filter((task) => task.lane === lane.id)}
+        />
       ))}
     </div>
   );
