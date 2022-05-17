@@ -41,10 +41,6 @@ function Board() {
       return task;
     });
 
-    // DEBUG
-    console.log('onDrop triggered');
-    console.log(updatedTasks);
-
     setTasks(updatedTasks);
   }
 

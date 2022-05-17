@@ -15,7 +15,14 @@ function Backlog() {
           <span>{error || 'Loading...'}</span>
         ) : (
           tasks.map((task) => (
-            <Task key={task.id} title={task.title} body={task.body} />
+            <div className="Backlog-task">
+              <Task
+                key={task.id}
+                title={task.title}
+                body={task.body}
+                onDragStart={() => {}}
+              />
+            </div>
           ))
         )}
       </div>
